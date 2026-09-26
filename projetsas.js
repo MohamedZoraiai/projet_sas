@@ -80,7 +80,7 @@ let candidats = [{
     electeurs: [] 
 }];
 function ajouterCandidat(){
-    console.log("Info de nouveau candidat : ");
+    console.log("\n Info de nouveau candidat : \n");
     let cin= prompt("entrer cin :")
     let nom= prompt("entrer nom :")
     let prenom = prompt("entrer prenom :")
@@ -89,7 +89,7 @@ function ajouterCandidat(){
 
     let dejaInscrit = candidats.find(c=>c.cin===cin);
     if (dejaInscrit){
-        console.log("candidat deja inscrit");
+        console.log("\n candidat deja inscrit\n");
         
     }else{
         let nouveau={
@@ -100,7 +100,7 @@ function ajouterCandidat(){
         age
         };
         candidats.push(nouveau)
-        console.log("nouveau candidat est ajoute");
+        console.log("\n Nouveau candidat est ajoute \n");
         
 
     }
@@ -108,8 +108,33 @@ function ajouterCandidat(){
 }
 
 ajouterCandidat();
+function ajouterPlusieursCandidats(){
+    console.log(" Ajouter plusieurs candidats à la fois ");
+    let n = Number(prompt("\n combien de candidats ?\n"))   
+    for(let i=0; i<n;i++){
+  
+        
+    let cin= prompt("entrer cin :")
+    let nom= prompt("entrer nom :")
+    let prenom = prompt("entrer prenom :")
+    let partiPolitique = prompt(" entrer partipolitique :")
+    let age = Number(prompt("entrer age :"))
+    
+    let nouveauCandidat={
+        cin,
+        nom,
+        prenom,
+        partiPolitique,
+        age,
+        electeurs:[]
+    };
+    candidats.push(nouveauCandidat)
+    console.log("\n Nouveau candidats sont ajoutes");
+    }
+    
+} 
 
-
+ ajouterPlusieursCandidats()
 
 
 
