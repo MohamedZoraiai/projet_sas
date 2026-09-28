@@ -267,6 +267,15 @@ function rechercherCandidat() {
         }
     }
 } 
+function Statistiques(){
+    console.log("Total candidats : " + candidats.length);
+    let totalVotes= 0;
+    for(let i=0;i<candidats.length;i++) {
+        totalVotes= totalVotes+candidats[i].electeurs.length;
+    }
+    console.log("total votes : " + totalVotes);
+}
+
 
 let b=false
 while(!b){ 
@@ -304,7 +313,8 @@ switch (choix) {
          rechercherCandidat()
         break;
     case 8:
-
+        Statistiques()
+        break;
     case 0:
         b=true
         break;
@@ -313,3 +323,17 @@ switch (choix) {
         console.log("choix invalide");
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
