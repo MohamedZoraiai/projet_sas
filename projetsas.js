@@ -175,8 +175,65 @@ function afficherLaListeDesCandidats() {
     }
 }
 }
+function voter() {
+    console.log("\n=== Voter pour un candidat ===");
+    let cin= prompt("Entrez votre CIN : ");
+    let dejaVote = false;
+    for (let i = 0; i < candidats.length; i++) {
+        for (let j = 0; j < candidats[i].electeurs.length; j++) {
+            if (candidats[i].electeurs[j] === cin) {
+                dejaVote = true;
+            }
+        }
+    }
+    if (dejaVote) {
+        console.log("Vous avez déjà voté et vous n'avez pas le droit de modifier votre vote ni de voter à nouveau.");
+        return;
+    }
+    let cinCandidat = prompt("Entrez le CIN du candidat : ");
+    let candidat = "";
+    for (let i = 0; i < candidats.length; i++) {
+        if (candidats[i].cin === cinCandidat) {
+            candidat = candidats[i];
+        }
+    }
+    if (!candidat) {
+        console.log("Candidat introuvable.");
+        return;
+    }
+    candidat.electeurs.push(cinElecteur);
+    console.log("Vote enregistré pour " + candidat.prenom + " " + candidat.nom + " !");
+}
+function modifierCandidat() {
+    console.log("\n=== Modifier un candidat ===");  
+    let cin = prompt("Entrez le CIN du candidat : ");
+    let candidat = "";
+    for (let i = 0; i < candidats.length; i++) {
+        if (candidats[i].cin === cin) {
+            candidat = candidats[i];
+        }
+    }
 
+    if (!candidat) {
+        console.log("Candidat introuvable.");
+        return;
+    }
 
+    console.log("Candidat trouve : " + candidat.prenom + " " + candidat.nom);
+    console.log("1. Modifier le parti politique");
+    console.log("2. Modifier l'age");
+    let choix = Number(prompt("choix : "));
+
+    if (choix === 1) {
+        candidat.partiPolitique = prompt("Nouveau parti : ");
+        console.log("Parti modifie avec succes.");
+    } else if (choix === 2) {
+        candidat.age = Number(prompt("Nouvel age : "));
+        console.log("Age modifie avec succes.");
+    } else {
+        console.log("Choix invalide.");
+    }
+}
 
 
 console.log("1 : Ajouter un nouveau candidat\n",
@@ -201,13 +258,10 @@ switch (choix) {
         afficherLaListeDesCandidats()
         break;
     case 4:
-        
-        break;
-    case 4:
-        
+        voter()        
         break;
     case 5:
-        
+        modifierCandidat()       
         break;
     case 6:
         
