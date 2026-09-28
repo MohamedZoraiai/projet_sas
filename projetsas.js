@@ -129,7 +129,7 @@ function ajouterPlusieursCandidats() {
             electeurs: []
         };
         candidats.push(nouveauCandidat)
-        console.log("\n Nouveau candidats sont ajoutes");
+        console.log("  ✓ Nouveau candidats sont ajoutes");
     }
 
 }
@@ -138,38 +138,43 @@ function afficherLaListeDesCandidats() {
     console.log("1 : Trier les candidats par nombre de votes");
     console.log("2 : Filtrer et afficher uniquement les candidats d'un parti politique spécifique");
     let choix = Number(prompt("choix :"))
-
-    if (choix=== 1) {
-        candidats.sort((a, b) => b.electeurs.length - a.electeurs.length);
-        console.log(candidats)
-    if (choix===2) {
-      
-
+    if (choix === 1) {   
+    for (let i = 0; i < candidats.length; i++) {
+        for (let j = 0; j < candidats.length - i - 1; j++) {
+            if (candidats[j].electeurs.length < candidats[j+1].electeurs.length) {
+                let temp = candidats[j];
+                candidats[j] = candidats[j+1];
+                candidats[j+1] = temp;
+            }
         }
+    }
+    for (let i = 0; i < candidats.length; i++) {
+        console.log("\n Candidat " + (i+1) + " :");
+        console.log("  CIN   : " + candidats[i].cin);
+        console.log("  Nom   : " + candidats[i].nom);
+        console.log("  Votes : " + candidats[i].electeurs.length);
+    }
+}else if (choix === 2) {
+    let parti = prompt("Entrez le parti : ");
+    let filtres = [];
+    for (let i = 0; i < candidats.length; i++) {
+        if (candidats[i].partiPolitique.toLowerCase() === parti.toLowerCase()) {
+            filtres.push(candidats[i]);
+        }
+    }
+
+    if (filtres.length === 0) {
+        console.log("Aucun candidat pour ce parti.");
     } else {
-        
+        for (let i = 0; i < filtres.length; i++) {
+            console.log("\n# Candidat " + (i+1) + " :");
+            console.log("  Nom   : " + filtres[i].nom);
+            console.log("  Parti : " + filtres[i].partiPolitique);
+            console.log("  Votes : " + filtres[i].electeurs.length);
+        }
     }
-
-    }
-   
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -181,7 +186,9 @@ console.log("1 : Ajouter un nouveau candidat\n",
     "5 : Modifier les informations d'un candidat\n",
     "6 : Supprimer un candidat\n",
     "7 : Rechercher des candidats\n",
-    "8 : Statistiques de l'élection\n",);
+    "8 : Statistiques de l'élection\n",
+    "0 : Quitter") 
+
 let choix = Number(prompt("choix :"))
 switch (choix) {
     case 1:
