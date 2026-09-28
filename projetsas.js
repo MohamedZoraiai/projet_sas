@@ -56,7 +56,7 @@ let candidats = [{
     electeurs: []
 },
 {
-    cin: "soufian",
+    cin: "BD334418",
     nom: "ayoub",
     prenom: "loza",
     partiPolitique: "nakhla",
@@ -247,7 +247,26 @@ function modifierCandidat() {
      console.log("candidats introuvable");
      
  }
+function rechercherCandidat() {
+    let nom = prompt("Nom a rechercher : ");
 
+    let resultats = [];
+    for (let i = 0; i < candidats.length; i++) {
+        if (candidats[i].nom.toLowerCase().includes(nom.toLowerCase())) {
+            resultats.push(candidats[i]);
+        }
+    }
+
+    if (resultats.length === 0) {
+        console.log("Aucun candidat trouve.");
+    } else {
+        for (let i = 0; i < resultats.length; i++) {
+            console.log("\n# Candidat " + (i+1) + " :");
+            console.log("  CIN  : " + resultats[i].cin);
+            console.log("  Nom  : " + resultats[i].nom);
+        }
+    }
+} 
 
 let b=false
 while(!b){ 
@@ -282,7 +301,7 @@ switch (choix) {
         supprimerCandidat()
         break;
     case 7:
-
+         rechercherCandidat()
         break;
     case 8:
 
