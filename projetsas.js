@@ -86,6 +86,7 @@ function ajouterCandidat() {
     let prenom = prompt("entrer prenom :")
     let partiPolitique = prompt("entrer partipolitique :")
     let age = Number(prompt("entrer age :"))
+    let electeurs =[]
 
     let dejaInscrit = candidats.find(c => c.cin === cin);
     if (dejaInscrit) {
@@ -97,7 +98,8 @@ function ajouterCandidat() {
             nom,
             prenom,
             partiPolitique,
-            age
+            age,
+            electeurs
         };
         candidats.push(nouveau)
         console.log("\n Nouveau candidat est ajoute \n");
@@ -323,17 +325,3 @@ switch (choix) {
         console.log("choix invalide");
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
